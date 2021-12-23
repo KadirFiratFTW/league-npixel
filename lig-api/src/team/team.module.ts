@@ -5,8 +5,6 @@ import { TeamController } from "./team.controller";
 import { TeamService } from "./team.service";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 
-console.log(process.env.RABBITMQ_HOST);
-
 @Module({
     imports: [
         TypeOrmModule.forFeature([Team]),
@@ -15,9 +13,7 @@ console.log(process.env.RABBITMQ_HOST);
                 name: "LEAGUE_SERVICE",
                 transport: Transport.RMQ,
                 options: {
-
                     urls: ["amqp://rabbit:password@" + process.env.RABBITMQ_HOST],
-
                     queue: "MATCH_QUEUE",
                     queueOptions: {
                         durable: false
@@ -30,6 +26,4 @@ console.log(process.env.RABBITMQ_HOST);
     providers: [TeamService],
 })
 
-export class TeamModule {
-
-}
+export class TeamModule {}
