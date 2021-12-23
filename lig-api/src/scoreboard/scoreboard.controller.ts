@@ -1,15 +1,13 @@
 import { Controller, Get, CACHE_MANAGER, Inject } from "@nestjs/common";
 import { ScoreBoardService } from "./scoreboard.service";
 import { Cache } from "cache-manager"
+
 @Controller('scoreboard')
 export class ScoreBoardController {
-
     constructor(
         private scoreBoardService: ScoreBoardService,
         @Inject(CACHE_MANAGER) private cacheManager: Cache
-    ) {
-
-    }
+    ) {}
 
     @Get()
     async getScoreboard() {
@@ -21,6 +19,4 @@ export class ScoreBoardController {
         })
         return { "from": "db", "data": fetchScoreboard };
     }
-
-
 }
