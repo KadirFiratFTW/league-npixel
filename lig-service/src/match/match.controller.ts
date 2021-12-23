@@ -4,14 +4,10 @@ import { MatchService } from "./match.service";
 
 @Controller('matches')
 export class MatchController {
-
-    constructor(private matchService: MatchService) {
-
-    }
+    constructor(private matchService: MatchService) {}
 
     @EventPattern('generateMatches')
     async generateMatches(data: boolean) {
         this.matchService.createMatches()
     }
-
 }
