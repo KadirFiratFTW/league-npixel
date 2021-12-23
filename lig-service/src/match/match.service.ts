@@ -5,27 +5,21 @@ import { Match } from "src/entity/match.entity";
 import { Repository } from "typeorm";
 import * as lodash from "lodash";
 
-
 @Injectable()
 export class MatchService {
-
 
     constructor(
         @InjectRepository(Team) private readonly teamRepository: Repository<Team>,
         @InjectRepository(Match) private readonly matchRepository: Repository<Match>
-    ) {
-
-    }
+    ) {}
 
     async createMatches(): Promise<Team> {
         const matchCount = await this.matchRepository.count();
-
         if (matchCount) return;
         this.generateFirstMatches();
     }
 
     async generateFirstMatches() {
-
         const teams = await this.teamRepository.find();
         const randomTeams = lodash.shuffle(teams);
         let cacheMatches = [];
@@ -38,9 +32,7 @@ export class MatchService {
                 cacheMatches.push({ Home: T.id, Away: AwayTeam.id });
             })
         })
-
         this.shuffleMatches(cacheMatches);
-
     }
 
     shuffleMatches(matches) {
@@ -56,7 +48,6 @@ export class MatchService {
     }
 
     generateSecondMatches(firstMatches) {
-
         const secondMatches = [];
         let matchWeek = 17;
         firstMatches.forEach(M => {
@@ -64,7 +55,6 @@ export class MatchService {
             secondMatches.push({ Home: M.Away, Away: M.Home, matchWeek });
         })
         this.insertMatches([...firstMatches, ...secondMatches]);
-
     }
 
     insertMatches(matchList) {
@@ -75,8 +65,6 @@ export class MatchService {
             newMatch.week = M.matchWeek;
             await this.matchRepository.save(newMatch);
         })
-
         console.log("Fixture Generated.")
     }
-
 }
