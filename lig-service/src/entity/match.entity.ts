@@ -3,7 +3,6 @@ import { Team } from "./team.entity";
 
 @Entity('matches')
 export class Match {
-
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,7 +11,6 @@ export class Match {
 
     @ManyToOne(() => Team, team => team.id)
     away: Team;
-
 
     @Column()
     homeGoal: number;
@@ -40,5 +38,4 @@ export class Match {
 
     @UpdateDateColumn()
     updated_at: Date;
-
 }
