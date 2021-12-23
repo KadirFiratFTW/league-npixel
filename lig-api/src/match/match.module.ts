@@ -19,6 +19,4 @@ import { ClientsModule, Transport } from "@nestjs/microservices";
     providers: [MatchService],
 })
 
-export class MatchModule {
-
-}
+export class MatchModule {}
