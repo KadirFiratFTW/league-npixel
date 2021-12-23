@@ -9,9 +9,8 @@ export class TeamService {
     constructor(
         @InjectRepository(Team) private readonly teamRepository: Repository<Team>,
         @Inject('LEAGUE_SERVICE') private readonly clientMQ: ClientProxy
-    ) {
-
-    }
+    ) {}
+    
     async all(): Promise<Team[]> {
         return this.teamRepository.find();
     }
