@@ -4,6 +4,7 @@ import * as redisStore from "cache-manager-redis-store";
 import { ScoreBoardController } from "./scoreboard.controller";
 import { ScoreBoardService } from "./scoreboard.service";
 import { Team } from "src/entity/team.entity";
+
 @Module({
     imports: [
         TypeOrmModule.forFeature([Team]),
@@ -17,6 +18,4 @@ import { Team } from "src/entity/team.entity";
     providers: [ScoreBoardService],
 })
 
-export class ScoreBoardModule {
-
-}
+export class ScoreBoardModule {}
