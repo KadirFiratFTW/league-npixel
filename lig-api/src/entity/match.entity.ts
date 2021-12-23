@@ -13,7 +13,6 @@ export class Match {
     @ManyToOne(() => Team, team => team.id)
     away: Team;
 
-
     @Column()
     homeGoal: number;
 
@@ -40,5 +39,4 @@ export class Match {
 
     @UpdateDateColumn()
     updated_at: Date;
-
 }
