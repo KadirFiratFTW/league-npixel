@@ -3,13 +3,12 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Team } from "src/entity/team.entity";
 import { Match } from "src/entity/match.entity";
+
 @Injectable()
 export class ScoreBoardService {
     constructor(
         @InjectRepository(Team) private readonly teamRepository: Repository<Team>
-    ) {
-
-    }
+    ) {}
 
     async getScoreBoard() {
         const ScoreBoard = await this.teamRepository.createQueryBuilder("teams")
@@ -42,8 +41,6 @@ export class ScoreBoardService {
             Rank++;
             return { ...R, Rank }
         })
-
         return rankedBoard;
     }
-
 }
